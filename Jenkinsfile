@@ -102,24 +102,26 @@ pipeline {
             }
         }
         
-        stage('Run with Docker Compose') {
+        stage('Run Container') {
             steps {
-                echo 'Running container with Docker Compose...'
+                echo 'Running container with Docker Run...'
                 script {
-                    // Stop any existing containers
+                    // 1. Force remove any old container with the same name
+                    sh "docker rm -f malware-app || true"
+
+                    // 2. Ensure directories exist
+                    sh "mkdir -p ${PROJECT_DIR}/output"
+                    // (Optional) If your repo doesn't have this folder, we create it so the mount doesn't fail
+                    sh "mkdir -p ${PROJECT_DIR}/network_logs"
+
+                    // 3. Run the container
+                    // -v maps your workspace folders to the container
+                    // --rm means "delete the container when finished"
                     sh """
-                        docker compose down || true
-                    """
-                    
-                    // Create output directory if it doesn't exist
-                    sh """
-                        mkdir -p ${PROJECT_DIR}/output
-                        mkdir -p ${PROJECT_DIR}/network_logs
-                    """
-                    
-                    // Run with docker-compose
-                    sh """
-                        docker compose up --build
+                        docker run --name malware-app \\
+                        -v ${PROJECT_DIR}/network_logs:/input/logs \\
+                        -v ${PROJECT_DIR}/output:/output \\
+                        ${DOCKER_IMAGE}:${IMAGE_TAG}
                     """
                 }
                 echo 'Container execution completed'
@@ -144,15 +146,15 @@ pipeline {
         }
     }
     
-    post {
+    ppost {
         always {
             echo 'Cleaning up...'
             script {
                 // Logout from Docker Hub
                 sh 'docker logout || true'
                 
-                // Clean up stopped containers
-                sh 'docker compose down || true'
+                // Remove the container if it's still there
+                sh 'docker rm -f malware-app || true'
             }
         }
         
