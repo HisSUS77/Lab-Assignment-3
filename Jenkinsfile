@@ -3,7 +3,7 @@ pipeline {
     
     environment {
         // Docker Hub credentials (configure in Jenkins)
-        DOCKERHUB_CREDENTIALS = credentials('dockerhub-credentials')
+        DOCKERHUB_CREDENTIALS = credentials('becceed8-f80c-4579-8912-65f9199a3760')
         
         // Docker image details
         DOCKER_IMAGE = 'your-dockerhub-username/cyber-def25-malware-detection'
