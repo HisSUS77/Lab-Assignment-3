@@ -108,7 +108,7 @@ pipeline {
                 script {
                     // Stop any existing containers
                     sh """
-                        docker-compose down || true
+                        docker compose down || true
                     """
                     
                     // Create output directory if it doesn't exist
@@ -119,7 +119,7 @@ pipeline {
                     
                     // Run with docker-compose
                     sh """
-                        docker-compose up --build
+                        docker compose up --build
                     """
                 }
                 echo 'Container execution completed'
@@ -152,7 +152,7 @@ pipeline {
                 sh 'docker logout || true'
                 
                 // Clean up stopped containers
-                sh 'docker-compose down || true'
+                sh 'docker compose down || true'
             }
         }
         
