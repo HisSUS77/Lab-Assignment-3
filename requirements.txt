@@ -1,0 +1,14 @@
+# CYBER-DEF25 Challenge - Python Dependencies
+# Malware Detection System Requirements
+
+# Core ML Libraries
+numpy>=2.0.0
+pandas>=2.0.0
+scikit-learn>=1.3.0
+
+# Additional ML/Data Processing
+scipy>=1.11.0
+
+# Logging and Utilities
+python-dateutil==2.8.2
+pytz==2023.3

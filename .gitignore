@@ -1,0 +1,93 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Virtual Environments
+venv/
+ENV/
+env/
+.venv
+
+# IDEs
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# Model files (keep one for submission)
+# Uncomment if you want to ignore the model
+# model.pkl
+
+# Output files
+output/*.csv
+output/*.json
+output/*.log
+
+# Logs
+*.log
+logs/
+
+# Docker
+.dockerignore
+
+# OS
+Thumbs.db
+desktop.ini
+.DS_Store
+
+# Temporary files
+*.tmp
+*.bak
+*.swn
+.~*
+
+# Environment variables
+.env
+.env.local
+
+# Test files
+test_*.py
+*_test.py
+tests/__pycache__/
+
+# Coverage reports
+htmlcov/
+.tox/
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+
+# Jupyter Notebook
+.ipynb_checkpoints
+
+# pyenv
+.python-version
+
+# Secrets
+secrets/
+*.key
+*.pem
+credentials.json

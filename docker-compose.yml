@@ -1,0 +1,42 @@
+version: '3.8'
+
+services:
+  malware-detection:
+    # Image name - will be built from Dockerfile
+    image: cyber-def25-malware-detection:latest
+    
+    # Container name
+    container_name: cyber-def25-detector
+    
+    # Build configuration
+    build:
+      context: .
+      dockerfile: Dockerfile
+    
+    # Volume mounts
+    volumes:
+      # Mount host network_logs directory to container's /input/logs
+      - ./network_logs:/input/logs:ro  # :ro means read-only
+      
+      # Mount output directory to save results
+      - ./output:/output
+    
+    # Environment variables (optional)
+    environment:
+      - MODEL_PATH=/app/model.pkl
+      - INPUT_DIR=/input/logs
+      - OUTPUT_DIR=/output
+      - PYTHONUNBUFFERED=1
+    
+    # Restart policy
+    restart: "no"  # Run once and exit
+    
+    # Network mode
+    network_mode: bridge
+    
+    # Logging configuration
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
