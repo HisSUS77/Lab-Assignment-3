@@ -6,7 +6,7 @@ pipeline {
         DOCKERHUB_CREDENTIALS = credentials('dockerhub-credentials')
         
         // Docker image details
-        DOCKER_IMAGE = 'your-dockerhub-username/cyber-def25-malware-detection'
+        DOCKER_IMAGE = 'thestreets6c/cyber-def25-malware-detection'
         IMAGE_TAG = "${BUILD_NUMBER}"
         LATEST_TAG = 'latest'
         
