@@ -146,7 +146,7 @@ pipeline {
         }
     }
     
-    ppost {
+    post {
         always {
             echo 'Cleaning up...'
             script {
